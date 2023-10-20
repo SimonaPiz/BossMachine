@@ -68,3 +68,7 @@ minionsRouter.delete('/:minionId', (req, res, next) => {
     res.status(404).send('Not found');
   }
 });
+
+// import and connect workRouter
+const workRouter = require('./workRouter');
+minionsRouter.use('/:minionId/work', workRouter);
