@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { getAllFromDatabase, getFromDatabaseById, addToDatabase, updateInstanceInDatabase } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById, addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require('./db');
 const ideasRouter = express.Router({mergeParams: true});
 
 // router for /api/ideas
@@ -52,8 +52,7 @@ ideasRouter.put('/:ideaId', (req, res, next) => {
 // DELETE /api/ideas/:ideaId to delete a single idea by id.
 ideasRouter.delete('/:ideaId', (req, res, next) => {
   const id = req.params.ideaId;
-  // to implement
-  const delidea = '';
+  const delidea = deleteFromDatabasebyId('ideas', id);
   if (delidea) {
     res.status(204).send();
   } else {
