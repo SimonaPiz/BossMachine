@@ -12,13 +12,27 @@ You can view a video demonstration of the final app here:
 </video>
 
 ## Usage
-1. Open the root project directory in your terminal. Run `npm install` to install the dependencies of this project and build the front-end application. Once it has finished installing, you can run `npm run start` to begin your server. You'll see `Server listening on port 4001` in the terminal. The `npm run start` script will automatically restart your server whenever you make changes to the **server.js** file or **server/** folder. If you want to turn this off, simply start your server with the `node server.js` command. You can kill either process with the `Ctrl + C` command.
 
-To see the application in its initial, non-working state, simply open **index.html** in a web browser.
+1. Open the root project directory in your terminal. Run 
+```
+  $ npm install
+``` 
+  to install the dependencies of this project and build the front-end application. 
+2. Once it has finished installing, you can run 
+```
+  $ npm run start
+``` 
+  to begin your server. You'll see 
+```
+  Server listening on port 4001
+``` 
+  in the terminal. 
+
+3. To see the application in its initial, non-working state, simply open **index.html** in a web browser.
 
 ## Implementation Details
 
-To complete the project, I needed to complete code for getting the API server up and running:
+To complete the project, I needed to complete code on getting the API server up and running:
 
 - [x] Server Boilerplate
 
@@ -56,7 +70,7 @@ To complete the project, I needed to complete code for getting the API server up
   
   ✔ [issue #3](https://github.com/SimonaPiz/BossMachine/issues/3)
 
-- [ ] Working with the 'Database'
+- [x] Working with the 'Database'
 
   Import and use helper functions for working with the database arrays on all routers:
 
