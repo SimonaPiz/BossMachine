@@ -1,7 +1,7 @@
 const express = require('express');
 const minionsRouter = express.Router({mergeParams: true});
 // import helper functions
-const { getAllFromDatabase, getFromDatabaseById, addToDatabase } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById, addToDatabase, updateInstanceInDatabase } = require('./db');
 // route /api/minions
 module.exports = minionsRouter;
 
@@ -50,8 +50,7 @@ minionsRouter.get('/:minionId', (req, res, next) => {
 // PUT /api/minions/:minionId to update a single minion by id.
 minionsRouter.put('/:minionId', (req, res, next) => {
   const minion = req.body;
-  // to implement
-  const updateMinion = minion;
+  const updateMinion = updateInstanceInDatabase('minions', minion);
   if (updateMinion) {
     res.status(200).send(updateMinion);
   } else {
