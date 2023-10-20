@@ -26,3 +26,15 @@ ideasRouter.post('/', checkMillionDollarIdea, (req, res, next) => {
     res.status(400).send();
   }
 });
+
+// GET /api/ideas/:ideaId to get a single idea by id.
+ideasRouter.get('/:ideaId', (req, res, next) => {
+  const id = req.params.ideaId;
+  // to implement
+  const idea = '';
+  if (idea) {
+    res.status(200).send(idea);
+  } else {
+    res.status(404).send('Not found');
+  }
+});
