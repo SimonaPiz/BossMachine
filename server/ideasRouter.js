@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { getAllFromDatabase, getFromDatabaseById } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById, addToDatabase } = require('./db');
 const ideasRouter = express.Router({mergeParams: true});
 
 // router for /api/ideas
@@ -19,8 +19,7 @@ ideasRouter.get('/', (req, res, next) => {
 // POST /api/ideas to create a new idea and save it to the database.
 ideasRouter.post('/', checkMillionDollarIdea, (req, res, next) => {
   const idea = req.body;
-  // to implement
-  const newidea = idea;
+  const newidea = addToDatabase('ideas', idea);
   if (newidea) {
     res.status(201).send(newidea);
   } else {
