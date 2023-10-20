@@ -1,9 +1,25 @@
 const express = require('express');
 const minionsRouter = express.Router({mergeParams: true});
 // import helper functions
-const { getAllFromDatabase } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById } = require('./db');
 // route /api/minions
 module.exports = minionsRouter;
+
+minionsRouter.param('minionId', (req, res, next, index) => {
+  try {
+    const minion = getFromDatabaseById('minions', index);
+    if (minion) {
+      req.minionId = index;
+      req.minion = minion;
+      next();
+    } else {
+      res.status(404).send('Not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+  
+});
 
 // GET /api/minions to get an array of all minions.
 minionsRouter.get('/', (req, res, next) => {
