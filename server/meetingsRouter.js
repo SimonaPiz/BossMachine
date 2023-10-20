@@ -27,3 +27,14 @@ meetingsRouter.post('/', (req, res, next) => {
     res.status(400).send();
   }
 });
+
+// DELETE /api/meetings to delete all meetings from the database.
+meetingsRouter.delete('/', (req, res, next) => {
+  // to implement
+  const delmeeting = '';
+  if (delmeeting) {
+    res.status(204).send();
+  } else {
+    res.status(400).send();
+  }
+});
