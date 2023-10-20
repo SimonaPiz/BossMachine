@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { getAllFromDatabase, getFromDatabaseById, addToDatabase } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById, addToDatabase, updateInstanceInDatabase } = require('./db');
 const ideasRouter = express.Router({mergeParams: true});
 
 // router for /api/ideas
@@ -41,8 +41,7 @@ ideasRouter.get('/:ideaId', (req, res, next) => {
 // PUT /api/ideas/:ideaId to update a single idea by id.
 ideasRouter.put('/:ideaId', (req, res, next) => {
   const idea = req.body;
-  // to implement
-  const updateidea = idea;
+  const updateidea = updateInstanceInDatabase('ideas', idea);
   if (updateidea) {
     res.status(200).send(updateidea);
   } else {
