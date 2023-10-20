@@ -34,33 +34,27 @@ In **server.js**, you will see some boilerplate code, but the server is missing 
 
 Take note of the comments in **server.js**, as your code needs to fit into specific places around the existing boilerplate.
 
-### API Routes
+## API Routes
 
-- Your routes should live inside the **server** folder. The file and router structure is up to you, the testing suite will only test whether your API endpoints work as intended, not how you nest your code!
-- Your 'database' exists in **server/db.js**. The beginning database will be seeded every time the server is restarted. There is more information on working with the database and the helper functions it exports below.
+### Routes Required
 
-#### Routes Required
+- [ ] `/api/minions`
+    - GET /api/minions to get an array of all minions.
+    - POST /api/minions to create a new minion and save it to the database.
+    - GET /api/minions/:minionId to get a single minion by id.
+    - PUT /api/minions/:minionId to update a single minion by id.
+    - DELETE /api/minions/:minionId to delete a single minion by id.
 
-- `/api/minions`
-  - GET /api/minions to get an array of all minions.
-  - POST /api/minions to create a new minion and save it to the database.
-  - GET /api/minions/:minionId to get a single minion by id.
-  - PUT /api/minions/:minionId to update a single minion by id.
-  - DELETE /api/minions/:minionId to delete a single minion by id.
-- `/api/ideas`
+- [ ]  `/api/ideas`
   - GET /api/ideas to get an array of all ideas.
   - POST /api/ideas to create a new idea and save it to the database.
   - GET /api/ideas/:ideaId to get a single idea by id.
   - PUT /api/ideas/:ideaId to update a single idea by id.
   - DELETE /api/ideas/:ideaId to delete a single idea by id.
-- `/api/meetings`
+- [ ]  `/api/meetings`
   - GET /api/meetings to get an array of all meetings.
   - POST /api/meetings to create a new meeting and save it to the database.
   - DELETE /api/meetings to delete _all_ meetings from the database.
-
-For all `/api/minions` and `/api/ideas routes`, any POST or PUT requests will send their new/updated resources in the request body. POST request bodies will not have an `id` property, you will have to set it based on the next id in sequence.
-
-For `/api/meetings` POST route, no request body is necessary, as meetings are generated automatically by the server upon request. Use the provided `createMeeting` function exported from **db.js** to create a new meeting object.
 
 ### Working with the 'Database'
 
