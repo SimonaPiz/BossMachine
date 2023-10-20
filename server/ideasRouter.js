@@ -38,3 +38,15 @@ ideasRouter.get('/:ideaId', (req, res, next) => {
     res.status(404).send('Not found');
   }
 });
+
+// PUT /api/ideas/:ideaId to update a single idea by id.
+ideasRouter.put('/:ideaId', (req, res, next) => {
+  const idea = req.body;
+  // to implement
+  const updateidea = idea;
+  if (updateidea) {
+    res.status(200).send(updateidea);
+  } else {
+    res.status(404).send('Not found');
+  }
+});
