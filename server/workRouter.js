@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { addToDatabase, updateInstanceInDatabase } = require('./db');
+const { addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require('./db');
 const { getAllWorksByMinionsId } = require('../../project-4-boss-machine-start/project-4-boss-machine-start/server/db');
 
 /*Bonus: you may implement routes to allow bosses 
@@ -53,4 +53,15 @@ workRouter.put('/:workId', (req, res, next) => {
     res.status(400).send(error);
   }
   
+});
+
+// DELETE /api/minions/:minionId/work/:workId to delete a single work by id.
+workRouter.delete('/:workId', (req, res, next) => {
+  const id = req.params.workId;
+  const delwork = deleteFromDatabasebyId('work', id);
+  if (delwork) {
+    res.status(204).send();
+  } else {
+    res.status(404).send('Not found');
+  }
 });
