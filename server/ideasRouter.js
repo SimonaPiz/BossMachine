@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { getAllFromDatabase } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById } = require('./db');
 const ideasRouter = express.Router({mergeParams: true});
 
 // router for /api/ideas
@@ -31,8 +31,7 @@ ideasRouter.post('/', checkMillionDollarIdea, (req, res, next) => {
 // GET /api/ideas/:ideaId to get a single idea by id.
 ideasRouter.get('/:ideaId', (req, res, next) => {
   const id = req.params.ideaId;
-  // to implement
-  const idea = '';
+  const idea = getFromDatabaseById('ideas', id);
   if (idea) {
     res.status(200).send(idea);
   } else {
