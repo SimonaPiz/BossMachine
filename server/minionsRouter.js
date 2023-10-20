@@ -1,7 +1,7 @@
 const express = require('express');
 const minionsRouter = express.Router({mergeParams: true});
 // import helper functions
-const { getAllFromDatabase, getFromDatabaseById, addToDatabase, updateInstanceInDatabase } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById, addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require('./db');
 // route /api/minions
 module.exports = minionsRouter;
 
@@ -61,8 +61,7 @@ minionsRouter.put('/:minionId', (req, res, next) => {
 // DELETE /api/minions/:minionId to delete a single minion by id.
 minionsRouter.delete('/:minionId', (req, res, next) => {
   const id = req.minionId;
-  // to implement
-  const delMinion = '';
+  const delMinion = deleteFromDatabasebyId('minions', id);
   if (delMinion) {
     res.status(204).send();
   } else {
