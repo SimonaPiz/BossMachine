@@ -31,3 +31,15 @@ minionsRouter.post('/', (req, res, next) => {
 minionsRouter.get('/:minionId', (req, res, next) => {
   res.status(200).send(req.minion);
 });
+
+// PUT /api/minions/:minionId to update a single minion by id.
+minionsRouter.put('/:minionId', (req, res, next) => {
+  const minion = req.body;
+  // to implement
+  const updateMinion = minion;
+  if (updateMinion) {
+    res.status(200).send(updateMinion);
+  } else {
+    res.status(404).send('Not found');
+  }
+});
