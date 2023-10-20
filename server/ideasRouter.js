@@ -1,4 +1,6 @@
 const express = require('express');
+// import helper functions
+const { getAllFromDatabase } = require('./db');
 const ideasRouter = express.Router({mergeParams: true});
 
 // router for /api/ideas
@@ -6,8 +8,7 @@ module.exports = ideasRouter;
 
 // GET /api/ideas to get an array of all ideas.
 ideasRouter.get('/', (req, res, next) => {
-  // to implement
-  const ideas = [];
+  const ideas = getAllFromDatabase('ideas');
   if (ideas) {
     res.status(200).send(ideas);
   } else {

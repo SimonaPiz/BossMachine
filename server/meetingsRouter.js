@@ -1,4 +1,6 @@
 const express = require('express');
+// import helper functions
+const { getAllFromDatabase } = require('./db');
 // router for /api/meetings
 const meetingsRouter = express.Router({mergeParams: true});
 
@@ -6,8 +8,7 @@ module.exports = meetingsRouter;
 
 // GET /api/meetings to get an array of all meetings.
 meetingsRouter.get('/', (req, res, next) => {
-  // to implement
-  const meetings = [];
+  const meetings = getAllFromDatabase('meetings');
   if (meetings) {
     res.status(200).send(meetings);
   } else {

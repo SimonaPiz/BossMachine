@@ -1,13 +1,13 @@
 const express = require('express');
 const minionsRouter = express.Router({mergeParams: true});
-
+// import helper functions
+const { getAllFromDatabase } = require('./db');
 // route /api/minions
 module.exports = minionsRouter;
 
 // GET /api/minions to get an array of all minions.
 minionsRouter.get('/', (req, res, next) => {
-  // to implement
-  const minions = [];
+  const minions = getAllFromDatabase('minions');
   if (minions) {
     res.status(200).send(minions);
   } else {
