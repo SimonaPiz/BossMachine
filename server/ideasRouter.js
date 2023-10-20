@@ -1,9 +1,12 @@
 const express = require('express');
 // import helper functions
 const { getAllFromDatabase, getFromDatabaseById, addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require('./db');
-const ideasRouter = express.Router({mergeParams: true});
+// import custom middleware
+const checkMillionDollarIdea = require('./checkMillionDollarIdea');
 
 // router for /api/ideas
+const ideasRouter = express.Router({mergeParams: true});
+
 module.exports = ideasRouter;
 
 // GET /api/ideas to get an array of all ideas.
@@ -17,7 +20,7 @@ ideasRouter.get('/', (req, res, next) => {
 });
 
 // POST /api/ideas to create a new idea and save it to the database.
-ideasRouter.post('/', (req, res, next) => {
+ideasRouter.post('/', checkMillionDollarIdea, (req, res, next) => {
   const idea = req.body;
   const newidea = addToDatabase('ideas', idea);
   if (newidea) {
