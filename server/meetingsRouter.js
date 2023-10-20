@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { getAllFromDatabase } = require('./db');
+const { getAllFromDatabase, addToDatabase, createMeeting } = require('./db');
 // router for /api/meetings
 const meetingsRouter = express.Router({mergeParams: true});
 
@@ -18,10 +18,8 @@ meetingsRouter.get('/', (req, res, next) => {
 
 // POST /api/meetings to create a new meeting and save it to the database.
 meetingsRouter.post('/', (req, res, next) => {
-  // to implement
-  const meeting = '';
-  // to implement
-  const newmeeting = '';
+  const meeting = createMeeting();
+  const newmeeting = addToDatabase('meetings', meeting);
   if (newmeeting) {
     res.status(201).send(newmeeting);
   } else {
