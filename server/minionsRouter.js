@@ -26,3 +26,8 @@ minionsRouter.post('/', (req, res, next) => {
     res.status(400).send();
   }
 });
+
+// GET /api/minions/:minionId to get a single minion by id.
+minionsRouter.get('/:minionId', (req, res, next) => {
+  res.status(200).send(req.minion);
+});
