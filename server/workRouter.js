@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { addToDatabase } = require('./db');
+const { addToDatabase, updateInstanceInDatabase } = require('./db');
 const { getAllWorksByMinionsId } = require('../../project-4-boss-machine-start/project-4-boss-machine-start/server/db');
 
 /*Bonus: you may implement routes to allow bosses 
@@ -37,4 +37,20 @@ workRouter.post('/', (req, res, next) => {
   } else {
     res.status(400).send();
   }
+});
+
+// PUT /api/minions/:minionId/work/:workId to update a single work by id.
+workRouter.put('/:workId', (req, res, next) => {
+  const work = req.body;
+  try {
+    const updatework = updateInstanceInDatabase('work', work);
+    if (updatework) {
+      res.status(200).send(updatework);
+    } else {
+      res.status(404).send('Not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+  
 });
