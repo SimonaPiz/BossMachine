@@ -43,3 +43,15 @@ minionsRouter.put('/:minionId', (req, res, next) => {
     res.status(404).send('Not found');
   }
 });
+
+// DELETE /api/minions/:minionId to delete a single minion by id.
+minionsRouter.delete('/:minionId', (req, res, next) => {
+  const id = req.minionId;
+  // to implement
+  const delMinion = '';
+  if (delMinion) {
+    res.status(204).send();
+  } else {
+    res.status(404).send('Not found');
+  }
+});
