@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { } = require('./db');
+const { addToDatabase } = require('./db');
 const { getAllWorksByMinionsId } = require('../../project-4-boss-machine-start/project-4-boss-machine-start/server/db');
 
 /*Bonus: you may implement routes to allow bosses 
@@ -25,5 +25,16 @@ workRouter.get('/', (req, res, next) => {
     res.status(200).send(works);
   } else {
     res.status(404).send();
+  }
+});
+
+// POST /api/minions/:minionId/work to create a new work object and save it to the database.
+workRouter.post('/', (req, res, next) => {
+  const work = req.body;
+  const newwork = addToDatabase('work', work);
+  if (newwork) {
+    res.status(201).send(newwork);
+  } else {
+    res.status(400).send();
   }
 });
