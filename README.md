@@ -56,7 +56,7 @@ To complete the project, I needed to complete code for getting the API server up
   
   ✔ [issue #3](https://github.com/SimonaPiz/BossMachine/issues/3)
 
-- [ ] Working with the 'Database'
+- [x] Working with the 'Database'
 
   Import and use helper functions for working with the database arrays on all routers:
 
@@ -118,13 +118,13 @@ In order to fully implement these routes, the database helper functions may not 
 
 ## Testing
 
-A testing suite has been provided for you, checking for all essential functionality and
-edge cases.
+Run
+```
+  $ npm run test
+```
+to test:
+- [ ] API Routes
+- [ ] checkMillionDollarIdea middleware
+- [ ] Bonus
 
-To run these tests, first open the root project directory in your terminal. Then run `npm install` to install all necessary testing dependencies (you will only need to do this step once).
-
-Finally, run `npm run test`. You will see a list of tests that ran with information
-about whether or not each test passed. After this list, you will see more specific output
-about why each failing test failed. While they are open in a terminal window, these tests will re-run every time you save server files. If you want to quit the testing loop, use `Ctrl + C`. If you only want to run the tests once, you can run the `mocha` command in the terminal from your project root directory.
-
-As you implement functionality, run the tests to ensure you are implementing your routes and middleware correctly. The tests will additionally help you identify edge cases that you may not have anticipated when first writing your routes. You should also test the functionality on the frontend to make sure that things are working as intended. Feel free to add logging middleware to your server, it will help with debugging!
+✔ [issue #5](https://github.com/SimonaPiz/BossMachine/issues/5)

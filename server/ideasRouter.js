@@ -17,7 +17,7 @@ ideasRouter.get('/', (req, res, next) => {
 });
 
 // POST /api/ideas to create a new idea and save it to the database.
-ideasRouter.post('/', checkMillionDollarIdea, (req, res, next) => {
+ideasRouter.post('/', (req, res, next) => {
   const idea = req.body;
   const newidea = addToDatabase('ideas', idea);
   if (newidea) {
