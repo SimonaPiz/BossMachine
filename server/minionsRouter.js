@@ -14,3 +14,15 @@ minionsRouter.get('/', (req, res, next) => {
     res.status(404).send();
   }
 });
+
+// POST /api/minions to create a new minion and save it to the database.
+minionsRouter.post('/', (req, res, next) => {
+  const minion = req.body;
+  // to implement
+  const newMinion = minion;
+  if (newMinion) {
+    res.status(201).send(newMinion);
+  } else {
+    res.status(400).send();
+  }
+});
