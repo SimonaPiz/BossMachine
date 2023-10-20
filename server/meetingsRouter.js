@@ -14,3 +14,16 @@ meetingsRouter.get('/', (req, res, next) => {
     res.status(404).send();
   }
 });
+
+// POST /api/meetings to create a new meeting and save it to the database.
+meetingsRouter.post('/', (req, res, next) => {
+  // to implement
+  const meeting = '';
+  // to implement
+  const newmeeting = '';
+  if (newmeeting) {
+    res.status(201).send(newmeeting);
+  } else {
+    res.status(400).send();
+  }
+});
