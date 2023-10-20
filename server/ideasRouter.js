@@ -50,3 +50,15 @@ ideasRouter.put('/:ideaId', (req, res, next) => {
     res.status(404).send('Not found');
   }
 });
+
+// DELETE /api/ideas/:ideaId to delete a single idea by id.
+ideasRouter.delete('/:ideaId', (req, res, next) => {
+  const id = req.params.ideaId;
+  // to implement
+  const delidea = '';
+  if (delidea) {
+    res.status(204).send();
+  } else {
+    res.status(404).send('Not found');
+  }
+});
