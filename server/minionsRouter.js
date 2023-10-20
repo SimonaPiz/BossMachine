@@ -1,7 +1,7 @@
 const express = require('express');
 const minionsRouter = express.Router({mergeParams: true});
 // import helper functions
-const { getAllFromDatabase, getFromDatabaseById } = require('./db');
+const { getAllFromDatabase, getFromDatabaseById, addToDatabase } = require('./db');
 // route /api/minions
 module.exports = minionsRouter;
 
@@ -34,8 +34,7 @@ minionsRouter.get('/', (req, res, next) => {
 // POST /api/minions to create a new minion and save it to the database.
 minionsRouter.post('/', (req, res, next) => {
   const minion = req.body;
-  // to implement
-  const newMinion = minion;
+  const newMinion = addToDatabase('minions', minion);
   if (newMinion) {
     res.status(201).send(newMinion);
   } else {
