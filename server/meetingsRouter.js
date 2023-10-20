@@ -1,6 +1,6 @@
 const express = require('express');
 // import helper functions
-const { getAllFromDatabase, addToDatabase, createMeeting } = require('./db');
+const { getAllFromDatabase, addToDatabase, createMeeting, deleteAllFromDatabase } = require('./db');
 // router for /api/meetings
 const meetingsRouter = express.Router({mergeParams: true});
 
@@ -29,8 +29,7 @@ meetingsRouter.post('/', (req, res, next) => {
 
 // DELETE /api/meetings to delete all meetings from the database.
 meetingsRouter.delete('/', (req, res, next) => {
-  // to implement
-  const delmeeting = '';
+  const delmeeting = deleteAllFromDatabase('meetings');
   if (delmeeting) {
     res.status(204).send();
   } else {
