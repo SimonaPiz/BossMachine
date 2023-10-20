@@ -14,3 +14,15 @@ ideasRouter.get('/', (req, res, next) => {
     res.status(404).send();
   }
 });
+
+// POST /api/ideas to create a new idea and save it to the database.
+ideasRouter.post('/', checkMillionDollarIdea, (req, res, next) => {
+  const idea = req.body;
+  // to implement
+  const newidea = idea;
+  if (newidea) {
+    res.status(201).send(newidea);
+  } else {
+    res.status(400).send();
+  }
+});
