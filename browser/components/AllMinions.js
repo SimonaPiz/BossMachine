@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { deleteMinionThunk } from '../store/minions'; 
 
-const AllMinions = props => {
-  const minions = props.minions.map(minion => {
+const AllMinions = ({minions, deleteMinion}) => {
+  const allMinions = minions.map(minion => {
     let name = minion.name.match(/.{1,11}/g).join('\n');
     return (
       <div className="minion-grid" key={minion.id}>
@@ -14,7 +14,7 @@ const AllMinions = props => {
           <p>{name}</p>
           <p>ID #{minion.id}</p>
         </Link>
-        <img onClick={() => props.deleteMinion(minion.id)}  className="button x-button" src="public/img/x_button.svg" alt="" />
+        <img onClick={() => deleteMinion(minion.id)}  className="button x-button" src="public/img/x_button.svg" alt="" />
       </div>
     )
   });
@@ -24,7 +24,7 @@ const AllMinions = props => {
       <div id="minions-landing">
         <div id="minions-title" className="label minions-label">MINIONS.exe</div>
         <div id="all-minions">
-          { minions }
+          { allMinions }
           <div id="add-minion-button-grid" className="minion-grid">
             <Link to="/minions/new">
               <img id="add-minion-button" className="button" src="public/img/add_button.svg" alt="" />

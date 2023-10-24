@@ -1,47 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import SingleWorkRow from './SingleWorkRow';
 
 import { updateWorkThunk, createWorkThunk } from '../store/work';
 
-class Work extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editingNewWork: false,
-    }
-  }
-
+const Work = ({createWork, work, updateWork, selectedMinion}) => {
+  const [editingNewWork, setEditingNewWork] = useState(false);
+  
   toggleEdit = () => {
-    this.setState({
-      editingNewWork: !this.state.editingNewWork,
-    });
+    setEditingNewWork(!editingNewWork);
   }
 
   saveNewWork = work => {
-    this.props.createWork(work);
-    this.setState({
-      editingNewWork: false,
-    })
+    createWork(work);
+    setEditingNewWork(false);
   }
 
-  render() {
-    const defaultWork = {
+  const defaultWork = {
       title: 'New Work',
       description: '',
       hours: 0,
-      minionId: this.props.selectedMinion.id,
+      minionId: selectedMinion.id,
     }
-    const workRows = this.props.work.map((work, idx) => {
-      return (
-        <SingleWorkRow updateWork={this.props.updateWork} work={work} key={work.id} idx={idx} />
-      )
-    });
-
-    const nextIdx = workRows.length + 1;
-  
+  const workRows = work.map((work, idx) => {
     return (
+      <SingleWorkRow updateWork={updateWork} work={work} key={work.id} idx={idx} />
+    )
+  });
+
+  const nextIdx = workRows.length + 1;
+  
+  return (
       <div id="work-container">
         <div id="work-label" className="label meetings-label">Work</div>
         <table className="work-table">
@@ -57,16 +47,16 @@ class Work extends Component {
           <tbody>
             { workRows }
             {
-              this.state.editingNewWork
-              ? <SingleWorkRow saveNewWork={this.saveNewWork} newWork={true} editing={true} work={defaultWork} idx={nextIdx}/>
+              editingNewWork
+              ? <SingleWorkRow saveNewWork={saveNewWork} newWork={true} editing={true} work={defaultWork} idx={nextIdx}/>
               : null
             }
             <tr>
               <td />
               <td />
               <td>
-                <div onClick={this.toggleEdit} className="button add-work-button">
-                  { this.state.editingNewWork ? 'Cancel' : 'Add Work' }
+                <div onClick={toggleEdit} className="button add-work-button">
+                  { editingNewWork ? 'Cancel' : 'Add Work' }
                 </div>
               </td>
             </tr>
@@ -74,7 +64,7 @@ class Work extends Component {
         </table>
       </div>
     )
-  }
+  
 }
 
 const mapState = ({ work, selectedMinion }) => ({ work, selectedMinion });

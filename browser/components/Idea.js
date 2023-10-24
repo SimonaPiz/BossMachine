@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
@@ -9,57 +9,41 @@ import IdeaEdit from './IdeaEdit';
 
 import { isMillionDollarIdea } from '../utils';
 
-class Idea extends Component {
-  constructor(props) {
-    super(props);
-    let editing = props.newIdea ? true : false;
-    this.state = {
-      editing: editing,
-      idea: props.idea,
-    }
-  }
-
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      idea: newProps.idea,
-    });
-  }
-
+const Idea = ({newIdea, idea, createIdea, updateIdea}) => {
+  let canEditing = newIdea ? true : false;
+  const [editing, setEditing] = useState(canEditing);
+  const [ideaEd, setIdeaEd] = useState(newIdea);
+  
   handleChange = e => {
-    this.setState({
-      idea: Object.assign(this.state.idea, {
-        [e.target.name]: e.target.value,
-      }),
-    });
+    setIdeaEd(Object.assign(idea, {
+      [e.target.name]: e.target.value,
+    }));
   }
 
   toggleEdit = e => {
-    if (this.state.editing) {
-      if (this.props.newIdea) {
-        this.props.createIdea(this.state.idea);
+    if (editing) {
+      if (newIdea) {
+        createIdea(ideaEd);
       } else {
-        this.props.updateIdea(this.state.idea);
+        updateIdea(ideaEd);
       }
     }
 
-    this.setState({
-      editing: !this.state.editing
-    });
+    setEditing(!editing);
   }
 
-  render() {
-    const isValid = isMillionDollarIdea(this.state.idea.weeklyRevenue, this.state.idea.numWeeks);
-    const buttonText = this.state.editing ? ( isValid ? 'Save' : 'Not A Valid $1000000 Idea!') : 'Edit';
-    return (
+  const isValid = isMillionDollarIdea(ideaEd.weeklyRevenue, ideaEd.numWeeks);
+  const buttonText = editing ? ( isValid ? 'Save' : 'Not A Valid $1000000 Idea!') : 'Edit';
+  return (
       <div>
         <div id="single-idea-landing">
-          { this.state.editing
-            ? <IdeaEdit idea={this.props.idea} handleChange={this.handleChange} />
-            : <IdeaDescription idea={this.props.idea} />
+          { editing
+            ? <IdeaEdit idea={idea} handleChange={handleChange} />
+            : <IdeaDescription idea={idea} />
           }
           <div id="save-idea"
                className={isValid ? "button save-button" : "button save-button disabled"}
-               onClick={isValid ? this.toggleEdit : () => {}} >
+               onClick={isValid ? toggleEdit : () => {}} >
             { buttonText }
           </div>
         </div>
@@ -70,7 +54,7 @@ class Idea extends Component {
         </div>
       </div>
     )
-  }
+  
 }
 
 const mapState = ({selectedIdea, appState}) =>({
