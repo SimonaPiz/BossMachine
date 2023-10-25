@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { hashHistory } from 'react-router'
+import { HashRouter } from 'react-router-dom'
 import { setSelectedMinion } from './selectedMinion';
 
 const SET_MINIONS = 'SET_MINIONS';
@@ -37,7 +37,7 @@ export const createMinionThunk = minion => dispatch => {
   .then(res => res.data)
   .then(createdMinion => {
     dispatch(addMinion(createdMinion));
-    hashHistory.push(`/minions/${createdMinion.id}`);
+    HashRouter.push(`/minions/${createdMinion.id}`);
   })
   .catch(console.error.bind(console));
 }
