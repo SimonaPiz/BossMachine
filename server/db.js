@@ -1,4 +1,22 @@
-const faker = require('faker');
+let { faker } = require('@faker-js/faker');
+/*const faker = {
+  company: {
+    buzzAdjective: 'company adjective',
+    catchPhraseNoun: 'company phrase noun',
+    buzzNoun: 'company noun',
+    catchPhrase: 'company phrase'
+  },
+  hacker: {
+    adjective: 'hacker adjective',
+  },
+  person: {
+    fullName: 'person fullname',
+    jobTitle: 'person job title',
+  },
+  date: {
+    future:'date future'
+  }
+}*/
 
 let minionIdCounter = 1;
 
@@ -6,7 +24,7 @@ const createMinion = () => {
   const weaknesses = new Array(3).fill(0).map(() => {
     const reasons = ['Cannot do', 'Unable to execute', 'Will not build'];
     const reason = reasons[Math.floor(Math.random() * reasons.length)];
-    const adj = faker.company.bsAdjective();
+    const adj = faker.company.buzzAdjective();
     const noun = faker.company.catchPhraseNoun();
     return `${reason} ${adj} ${noun}`;
   })
@@ -14,8 +32,8 @@ const createMinion = () => {
 
   return {
     id: `${minionIdCounter++}`,
-    name: faker.name.findName(),
-    title: faker.name.jobTitle(),
+    name: faker.person.fullName(),
+    title: faker.person.jobTitle(),
     weaknesses: weaknesses,
     salary: 40000,
   }
@@ -44,7 +62,7 @@ const companies = [
 ];
 
 const createIdea = () => {
-  const noun = faker.company.bsNoun();
+  const noun = faker.company.buzzNoun();
   const name = companies[Math.floor(Math.random() * companies.length)];
   let weeklyRevenue = 0;
   let numWeeks = 0;
@@ -210,6 +228,12 @@ const getFromDatabaseById = (modelType, id) => {
   });
 }
 
+const getAllWorksByMinionsId = (minionId) => {
+  return db.allWork.data.filter(work => {
+    return work.minionId === minionId;
+  });
+};
+
 const addToDatabase = (modelType, instance) => {
   const model = findDataArrayByName(modelType);
   if (model === null) {
@@ -271,4 +295,5 @@ module.exports = {
   updateInstanceInDatabase,
   deleteFromDatabasebyId,
   deleteAllFromDatabase,
+  getAllWorksByMinionsId
 };

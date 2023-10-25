@@ -1,7 +1,7 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Route, HashRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import store from './store/index';
@@ -93,11 +93,13 @@ const allIdeasEnter = () => {
   store.dispatch(resetEditingState())
 }
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('app'));
+
+root.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <HashRouter>
       <Route path="/" component={App} onEnter={appEnter}>
-        <IndexRoute component={Home} />
+        <Route index path="/" component={Home} />
         <Route path="/minions" component={AllMinions} />
         <Route path="/minions/new" onEnter={newMinionEnter} components={Minion} />
         <Route path="/minions/:id" onEnter={singleMinionEnter} components={Minion} />
@@ -105,7 +107,6 @@ ReactDOM.render(
         <Route path="/ideas/new" onEnter={newIdeaEnter} components={Idea}/>
         <Route path="/ideas/:id" onEnter={singleIdeaEnter} components={Idea} />
       </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('app')
+    </HashRouter>
+  </Provider>
 );

@@ -1,7 +1,6 @@
 const express = require('express');
 // import helper functions
-const { addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require('./db');
-const { getAllWorksByMinionsId } = require('../../project-4-boss-machine-start/project-4-boss-machine-start/server/db');
+const { getAllWorksByMinionsId, addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require('./db');
 
 /*Bonus: you may implement routes to allow bosses 
 to add and remove work from their minions' backlogs.

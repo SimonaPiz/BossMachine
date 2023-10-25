@@ -1,42 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Meeting from './Meeting';
 
 import { createMeetingThunk } from '../store/meetings';
 
-class AllMeetings extends Component {
+const AllMeetings = ({meetings, createMeeting}) => {
+  const [timeoutId,setTimeoutId] = useState(null);
+  const [timeoutTime, setTimeoutTime] = useState(5000);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      timeoutId: null,
-      timeoutTime: 5000,
-    }
-  }
-
-  componentDidMount() {
-    let timeoutId = null;
+  useEffect(() => {
     const addMeeting = () => {
-      this.props.createMeeting();
-      timeoutId = window.setTimeout(addMeeting, this.state.timeoutTime);
-      this.setState({
-        timeoutId,
-        timeoutTime: Math.random() * 10000 + 3000,
-      });
+      createMeeting();
+      let curTimeoutId = window.setTimeout(addMeeting, timeoutTime);
+      setTimeoutId(curTimeoutId);
+      setTimeoutTime(Math.random() * 10000 + 3000);
     }
     addMeeting();
-  }
 
-  componentWillUnmount() {
-    window.clearTimeout(this.state.timeoutId);
-  }
+    return () => {
+      window.clearTimeout(timeoutId);
+    }
+  }, []);
 
-  render() {
-    const allMeetings = this.props.meetings.map(meeting => {
-      return <Meeting key={meeting.date} day={meeting.day} time={meeting.time} note={meeting.note} />
-    });
+  const allMeetings = meetings.map(meeting => {
+    return <Meeting key={meeting.date} day={meeting.day} time={meeting.time} note={meeting.note} />
+  });
   
-    return (
+  return (
       <div id="meetings-landing">
         <div className="label meetings-label">
           Meetings
@@ -57,7 +47,7 @@ class AllMeetings extends Component {
         </div>
       </div>
     )
-  }
+  
 }
 
 const mapState = ({ meetings }) => ({ meetings });
