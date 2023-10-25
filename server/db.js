@@ -1,4 +1,22 @@
 let { faker } = require('@faker-js/faker');
+/*const faker = {
+  company: {
+    buzzAdjective: 'company adjective',
+    catchPhraseNoun: 'company phrase noun',
+    buzzNoun: 'company noun',
+    catchPhrase: 'company phrase'
+  },
+  hacker: {
+    adjective: 'hacker adjective',
+  },
+  person: {
+    fullName: 'person fullname',
+    jobTitle: 'person job title',
+  },
+  date: {
+    future:'date future'
+  }
+}*/
 
 let minionIdCounter = 1;
 
@@ -210,6 +228,12 @@ const getFromDatabaseById = (modelType, id) => {
   });
 }
 
+const getAllWorksByMinionsId = (minionId) => {
+  return db.allWork.data.filter(work => {
+    return work.minionId === minionId;
+  });
+};
+
 const addToDatabase = (modelType, instance) => {
   const model = findDataArrayByName(modelType);
   if (model === null) {
@@ -271,4 +295,5 @@ module.exports = {
   updateInstanceInDatabase,
   deleteFromDatabasebyId,
   deleteAllFromDatabase,
+  getAllWorksByMinionsId
 };
