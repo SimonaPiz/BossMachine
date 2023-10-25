@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, HashRouter, IndexRoute } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import store from './store/index';
@@ -99,7 +99,7 @@ root.render(
   <Provider store={store}>
     <HashRouter>
       <Route path="/" component={App} onEnter={appEnter}>
-        <Route path="/" component={Home} />
+        <Route index path="/" component={Home} />
         <Route path="/minions" component={AllMinions} />
         <Route path="/minions/new" onEnter={newMinionEnter} components={Minion} />
         <Route path="/minions/:id" onEnter={singleMinionEnter} components={Minion} />
