@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import SingleWorkRowDescription from './SingleWorkRowDescription';
 import SingleWorkRowEdit from './SingleWorkRowEdit';
 
-const SingleWorkRow = ({editing, work, newWork, saveNewWork, updateWork, idx}) => {
+const SingleWorkRow = ({editing, work, saveNewWork, updateWork, idx}) => {
   let isEditing = editing ? true : false;
   const [newEditing, setNewEditing] = useState(isEditing);
   const [newWork, setNewWork] = useState(null);
