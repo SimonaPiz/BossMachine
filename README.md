@@ -1,34 +1,24 @@
-# Boss Machine
+# <img src="https://github.com/SimonaPiz/BossMachine/blob/main/public/img/favicon.ico" width="25px" alt="icon Boss Machine" title="icon Boss Machine"/> Boss Machine
+> Create an API to serve information to a Boss Machine App
 
-## Project Overview
+<img src="https://github.com/SimonaPiz/BossMachine/blob/main/anteprima-home.png" width="600px" alt="preview" title="preview"/>
 
-In this project, you will create an entire API to serve information to a Boss Machine, a unique management application for today's most accomplished (evil) entrepreneurs. You will create routes to manage your 'minions', your brilliant 'million dollar ideas', and to handle all the annoying meetings that keep getting added to your busy schedule.
+## Table of Contents
+* [General Info](#general-information)
+* [Implementation Details](#implementation-details)
+* [Testing](#testing)
+* [Screenshots](#screenshots)
+* [Technologies Used](#technologies-used)
+* [Usage](#usage)
+* [Acknowledgements](#acknowledgements)
+* [Author](#author)
 
-You can view a video demonstration of the final app here:
+## General Information
 
-<video width="100%" height="100%" controls>
-   <source src="https://s3.amazonaws.com/codecademy-content/programs/build-apis/solution-videos/BossMachine480.mov" type="video/mp4">
- The markdown processor does not support the video tag.
-</video>
+In this project, I created an entire API to serve information to a Boss Machine, a unique management application for today's most accomplished (evil) entrepreneurs. 
+I created routes to manage the 'minions', the brilliant 'million dollar ideas', and to handle all the annoying meetings that keep getting added to the busy schedule.
 
-## Usage
-
-1. Open the root project directory in your terminal. Run 
-```
-  $ npm install
-``` 
-  to install the dependencies of this project and build the front-end application. 
-2. Once it has finished installing, you can run 
-```
-  $ npm run start
-``` 
-  to begin your server. You'll see 
-```
-  Server listening on port 4001
-``` 
-  in the terminal. 
-
-3. To see the application in its initial, non-working state, simply open **index.html** in a web browser.
+You can view a video demonstration of the final app here: [▶](https://content.codecademy.com/programs/build-apis/solution-videos/BossMachine480.mov)
 
 ## Implementation Details
 
@@ -47,7 +37,7 @@ To complete the project, I needed to complete code on getting the API server up 
 
 - [x] API Routes
 
-### Routes Required
+    Routes Required
 
   - `/api/minions`
     - GET /api/minions to get an array of all minions.
@@ -138,8 +128,53 @@ Run
   $ npm run test
 ```
 to test:
-- [ ] API Routes
-- [ ] checkMillionDollarIdea middleware
-- [ ] Bonus
+- [x] API Routes
+- [x] checkMillionDollarIdea middleware
+- [x] Bonus
 
 ✔ [issue #5](https://github.com/SimonaPiz/BossMachine/issues/5)
+
+![test results](https://user-images.githubusercontent.com/91121660/278086636-f11bfdd8-82c8-47ba-872c-afbf76bc0750.png)
+
+## Screenshots
+
+<img src="https://github.com/SimonaPiz/BossMachine/blob/main/anteprima-minions.png" width="600px" alt="preview" title="preview"/>
+<img src="https://github.com/SimonaPiz/BossMachine/blob/main/anteprima-minion-single.png" width="600px" alt="preview" title="preview"/>
+<img src="https://github.com/SimonaPiz/BossMachine/blob/main/anteprima-ideas.png" width="600px" alt="preview" title="preview"/>
+
+## Usage
+
+1. Open the root project directory in your terminal. Run 
+```
+  $ npm install
+``` 
+  to install the dependencies of this project and build the front-end application. 
+2. Once it has finished installing, you can run 
+```
+  $ npm run start
+``` 
+  to begin your server. You'll see 
+```
+  Server listening on port 4001
+``` 
+  in the terminal. 
+
+3. To see the application in its initial, non-working state, simply open **index.html** in a web browser.
+
+## Technologies Used
+   - React 18
+   - React router dom 6
+   - React Redux 8
+   - @reduxjs/toolkit
+   - mocha 10
+   - chai 4
+   - @faker-js/faker 8
+   - express 4
+
+## Acknowledgements
+
+This project comes from the [Codecademy's Create a Back-End with JavaScript](https://www.codecademy.com/learn/paths/create-a-back-end-app-with-javascript) course.
+
+## Author
+
+- [Simona Pizio](https://github.com/SimonaPiz)
